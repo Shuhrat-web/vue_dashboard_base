@@ -69,3 +69,10 @@ export interface IPositions{
     right: string;
     center: string;
 }
+
+
+export interface IActions {
+    delete: boolean;
+    edit: boolean;
+    create: boolean
+}

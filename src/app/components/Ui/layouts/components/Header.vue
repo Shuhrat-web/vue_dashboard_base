@@ -1,5 +1,5 @@
 <template>
-    <div class="container__base py-5  border-b border-secondary bg-white px-4 shadow-sm flex justify-between">
+    <div class="container__base py-5  border-b border-secondary bg-white px-4 shadow-sm flex justify-between mb-5">
         <div class="w-60">
             <SearchBar />
         </div>

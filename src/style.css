@@ -8,3 +8,7 @@
       @apply container mx-auto px-4;
     }
   }
+
+  .vue3-easy-data-table__header{
+    z-index: 0;
+  }

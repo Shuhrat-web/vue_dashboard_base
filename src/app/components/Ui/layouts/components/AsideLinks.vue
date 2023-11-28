@@ -1,7 +1,7 @@
 <template>
     <nav>
         <ul class="flex flex-col gap-4">
-            <li class="w-full px-2" v-for="link in routes" :key="link.id">
+            <li class="w-full px-2 text-sm" v-for="link in routes" :key="link.id">
                 <AsideLink :icon="link.icon" :active="route.path === link.path" :to="link.path">
                     {{ link.title }}
                 </AsideLink>
