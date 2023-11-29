@@ -85,7 +85,7 @@ export const tarifsStore = defineStore('tarifs', () => {
     }
 
     const createTarif = (createdTarif:ITarif) => {
-        allTarifs.value = [...allTarifs.value, createdTarif];
+        allTarifs.value = [...allTarifs.value, {...createdTarif,id: Date.now(),}];
         synTarifsWithocalStorage();
         toast.success('Tarif created successfully!', {
             timeout: 2000

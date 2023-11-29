@@ -17,9 +17,9 @@ import {IBaseDialogProps, IDialogSettings} from './lib/types/DialogsTypes'
 </script>
 <template>
     <div 
-    class="fixed top-0 left-0 h-screen w-screen duration-200 transition-all flex items-center justify-center"
+    class="fixed top-0 left-0 h-screen w-screen duration-200 transition-all flex items-center justify-center z-30"
     :class="`${props.show ? 'opacity-100 visible' : 'opacity-0 invisible'}`">
-    <div class="absolute top-0 left-0 w-full h-full bg-black/30 z-10 " @click="props.toggleShow(false)">
+    <div class="absolute top-0 left-0 w-full h-full bg-black/30 z-40 " @click="props.toggleShow(false)">
     </div>
         <div 
         :class="

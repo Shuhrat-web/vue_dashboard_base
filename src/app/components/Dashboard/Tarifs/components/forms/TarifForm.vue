@@ -10,7 +10,7 @@ const tarifs = tarifsStore()
 const props = defineProps<ITarifFormProps>()
 let activeItem = reactive(props.activeItem ? props.activeItem :
     {
-        id: Date.now(),
+        id: 0,
         name: '',
         price: 0,
         description: ''
@@ -27,7 +27,7 @@ watch(() => tarifs.activeItem, (item) => {
 
 <template>
         <form @submit.prevent="props.conFirmForm(activeItem)">
-            <div class="grid grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <BaseTextField 
                 required
                 label="Name" 

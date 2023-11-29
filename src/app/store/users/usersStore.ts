@@ -86,7 +86,7 @@ export const usersStore = defineStore('users', () => {
     }
 
     const createUser = (createdUser:IUser) => {
-        allUsers.value = [...allUsers.value, createdUser];
+        allUsers.value = [...allUsers.value, {...createdUser,id: Date.now(),}];
         synUsersWithocalStorage();
         toast.success('User created successfully!', {
             timeout: 2000

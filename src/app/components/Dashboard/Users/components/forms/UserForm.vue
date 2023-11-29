@@ -32,7 +32,7 @@ const activeTarif = ref<number>(0)
 
 let activeItem = reactive(props.activeItem ? props.activeItem :
     {
-        id: Date.now(),
+        id: 0,
         firstName: '',
         lastName: '',
         fathersName: '',
@@ -63,7 +63,7 @@ const submitForm = () => {
 </script>
 <template>
     <form @submit.prevent="submitForm()">
-            <div class="grid grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <BaseTextField 
                 required
                 label="First Name" 

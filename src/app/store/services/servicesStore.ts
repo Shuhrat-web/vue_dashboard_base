@@ -92,7 +92,7 @@ export const servicesStore = defineStore('services', () => {
     }
 
     const createService = (createdServicef:IService) => {
-        allServices.value = [...allServices.value, createdServicef];
+        allServices.value = [...allServices.value, {...createdServicef,id: Date.now(),}];
         synServicesWithocalStorage();
         toast.success('Service created successfully!', {
             timeout: 2000
