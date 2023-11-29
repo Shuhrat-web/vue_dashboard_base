@@ -1,35 +1,35 @@
 
 <script setup lang="ts">
-    import { tarifsStore } from '@store/tarifs/tarifsStore';
     import BaseHeading from '@components/Ui/Headings/BaseHeading.vue'
     import BaseDialog from '@components/Ui/Dialog/BaseDialog.vue'
-    import BaseButton from '@/app/components/Ui/Buttons/BaseButton.vue';
-    import { ITarif } from '@/app/lib/requests/types/TarifsTypes';
-    import TarifForm from './forms/TarifForm.vue'
+    import BaseButton from '@components/Ui/Buttons/BaseButton.vue';
+    import ServicesForm from './forms/ServicesForm.vue'
+    import { servicesStore } from '@store/services/servicesStore';
+    import { IService } from '@/app/lib/requests/types/ServicesTypes';
 
-    const tarifs = tarifsStore() 
+    const services = servicesStore() 
 
     const toggleDeleteAction = (show:boolean) => {
-        tarifs.setDialogAction('delete',show)
+        services.setDialogAction('delete',show)
     }
 
     const toggleEditAction = (show:boolean) => {
-        tarifs.setDialogAction('edit',show)
+        services.setDialogAction('edit',show)
     }
     const toggleCreateAction = (show:boolean) => {
-        tarifs.setDialogAction('create',show)
+        services.setDialogAction('create',show)
     }
     const confirmDelete = () => {
-        if(tarifs.activeItem)tarifs.deleteTarif(tarifs.activeItem.id)
+        if(services.activeItem)services.deleteService(services.activeItem.id)
         toggleDeleteAction(false)
     }
-    const confirmEdit = (item:ITarif) => {
+    const confirmEdit = (item:IService) => {
         toggleEditAction(false)
-        tarifs.editTarif(item)
+        services.editService(item)
     }
 
-    const confirmCreate = (item:ITarif) => {
-        tarifs.createTarif(item)
+    const confirmCreate = (item:IService) => {
+        services.createService(item)
         toggleCreateAction(false)
     }
 </script>
@@ -39,14 +39,14 @@
         <BaseDialog 
         size="sm"
         :toggle-show="toggleDeleteAction"
-        :show="tarifs.dialogActions.delete">
+        :show="services.dialogActions.delete">
             <template v-slot:header>
                 <BaseHeading centered size="2xl">
                     Подтвердите действие
                 </BaseHeading>
             </template>
             <p class="text-center">
-                Вы уверены что хотите удалить "{{ tarifs.activeItem.name }}"?
+                Вы уверены что хотите удалить "{{ services.activeItem.name }}"?
             </p>
             <template v-slot:footer>
                 <div class="flex justify-center items-center gap-5">
@@ -61,28 +61,28 @@
         </BaseDialog>
         <BaseDialog
         :toggle-show="toggleEditAction"
-        :show="tarifs.dialogActions.edit">
+        :show="services.dialogActions.edit">
             <template v-slot:header>
                 <BaseHeading centered size="2xl">
-                    Редактирование "{{ tarifs.activeItem.name }}"
+                    Редактирование "{{ services.activeItem.name }}"
                 </BaseHeading>
             </template>
-            <TarifForm
-                :active-item="tarifs.activeItem"
+            <ServicesForm
+                :active-item="services.activeItem"
                 :con-firm-form="confirmEdit"
                 :toggle-cancle="toggleEditAction"
              />
         </BaseDialog>
         <BaseDialog
         :toggle-show="toggleCreateAction"
-        :show="tarifs.dialogActions.create">
+        :show="services.dialogActions.create">
             <template v-slot:header>
                 <BaseHeading centered size="2xl">
                     Создание
                 </BaseHeading>
             </template>
-            <TarifForm
-                :active-item="tarifs.activeItem"
+            <ServicesForm
+                :active-item="services.activeItem"
                 :con-firm-form="confirmCreate"
                 :toggle-cancle="toggleCreateAction"
              />

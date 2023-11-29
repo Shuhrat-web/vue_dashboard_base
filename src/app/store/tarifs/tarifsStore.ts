@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import {tarifs} from '@lib/db/staticData'
 import { ref, computed } from "vue";
 import { ITarif } from "@/app/lib/requests/types/TarifsTypes";
-import { IDialogActions } from "./lib/types/TarifTypes";
+import { IDialogActions } from "../lib/types/StoreTypes";
 import { useToast } from "vue-toastification";
 
 export const tarifsStore = defineStore('tarifs', () => {
@@ -65,7 +65,7 @@ export const tarifsStore = defineStore('tarifs', () => {
     const deleteTarif = (id: number) => {
         allTarifs.value = allTarifs.value.filter(el => el.id !== id)
         synTarifsWithocalStorage()
-        toast.error('Данные успешно удалены!', {
+        toast.error('Tarif deleted successfully!', {
             timeout: 2000
         })
     }
@@ -74,7 +74,7 @@ export const tarifsStore = defineStore('tarifs', () => {
         allTarifs.value = allTarifs.value.map(el => (el.id === editedTarif.id ? {...editedTarif} : el));
         synTarifsWithocalStorage();
         activeItem.value = emptyItem
-        toast.info('Данные успешно изменены!', {
+        toast.info('Tarif edited successfully!', {
             timeout: 2000
         }) 
     }
@@ -82,9 +82,10 @@ export const tarifsStore = defineStore('tarifs', () => {
     const createTarif = (createdTarif:ITarif) => {
         allTarifs.value = [...allTarifs.value, createdTarif];
         synTarifsWithocalStorage();
-        toast.success('Тариф успешно добавлен!', {
+        toast.success('Tarif created successfully!', {
             timeout: 2000
         })
+        activeItem.value = emptyItem
     }
 
     const synTarifsWithocalStorage = () => {

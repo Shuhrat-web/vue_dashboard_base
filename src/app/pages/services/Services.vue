@@ -1,10 +1,9 @@
 <template>
-    <div>
-
-    </div>
+    <ServicesPage />
 </template>
 
 <script setup lang="ts">
+import ServicesPage from '@components/Dashboard/Services/ServicesPage.vue';
 
 </script>
 

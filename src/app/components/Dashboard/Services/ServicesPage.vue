@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { tarifsStore } from '@store/tarifs/tarifsStore';
 import type { Header } from "vue3-easy-data-table";
 import BaseButton from '../../Ui/Buttons/BaseButton.vue';
-import TarifsDialogs from './components/TarifsDialogs.vue';
-import { IDialogActions } from '@/app/store/lib/types/StoreTypes';
+import ServicesDialogs from './components/ServicesDigalogs.vue';
+import { IDialogActions } from '@store/lib/types/StoreTypes';
 import BaseHeading from '@components/Ui/Headings/BaseHeading.vue'
+import { servicesStore } from '@store/services/servicesStore';
 
-    const tarifs = tarifsStore();
+    const services = servicesStore();
     const headers:Header[] = [
         {
             text: 'Name',
@@ -28,8 +28,8 @@ import BaseHeading from '@components/Ui/Headings/BaseHeading.vue'
 
     
     const setAction = (id:number,type:'delete'|'edit') => {
-        tarifs.setActiveTarif(id);        
-        tarifs.setDialogAction(type as keyof IDialogActions,true)
+        services.setActiveService(id);        
+        services.setDialogAction(type as keyof IDialogActions,true)
     }
 </script>
 
@@ -37,9 +37,9 @@ import BaseHeading from '@components/Ui/Headings/BaseHeading.vue'
     <div>
         <div class="flex justify-between items-center mb-5">
             <BaseHeading size="2xl">
-                Tarifs list
+                Services list
             </BaseHeading>
-            <BaseButton @click="tarifs.setDialogAction('create',true)" flat>
+            <BaseButton @click="services.setDialogAction('create',true)" flat>
                 Add
             </BaseButton>
         </div>
@@ -47,7 +47,7 @@ import BaseHeading from '@components/Ui/Headings/BaseHeading.vue'
             show-index
             class="relative"
             :headers="headers"
-            :items="tarifs.getAllTarifs"
+            :items="services.getAllServices"
         >
             <template #item-actions="{id}">
                 <div class="flex gap-3">
@@ -61,7 +61,7 @@ import BaseHeading from '@components/Ui/Headings/BaseHeading.vue'
             </template>
         </EasyDataTable>
     </div>
-    <TarifsDialogs />
+    <ServicesDialogs />
 </template>
 
 <style scoped>

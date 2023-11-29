@@ -1,0 +1,58 @@
+<script setup lang="ts">
+import { reactive,watch } from 'vue';
+import { ITarifFormProps } from '../../lib/types/TarifPageTypes';
+import BaseTextField from '@components/Ui/TextFields/BaseTextField.vue'
+import BaseButton from '@components/Ui/Buttons/BaseButton.vue'
+import { tarifsStore } from '@store/tarifs/tarifsStore';
+
+const tarifs = tarifsStore() 
+
+const props = defineProps<ITarifFormProps>()
+let activeItem = reactive(props.activeItem ? props.activeItem :
+    {
+        id: Date.now(),
+        name: '',
+        price: 0,
+        description: ''
+    }
+)
+
+watch(() => tarifs.activeItem, (item) => {    
+    activeItem = JSON.parse(JSON.stringify(item))
+})
+
+
+
+</script>
+
+<template>
+        <form @submit.prevent="props.conFirmForm(activeItem)">
+            <div class="grid grid-cols-2 gap-5">
+                <BaseTextField 
+                required
+                label="Name" 
+                v-model="activeItem.name" />
+                <BaseTextField 
+                required
+                textfield-type="number" 
+                label="Price" 
+                v-model="activeItem.price" />
+                <BaseTextField 
+                required
+                label="Description" 
+                v-model="activeItem.description" />
+            </div>
+            <div class="flex justify-center items-center gap-5 mt-5">
+                <BaseButton @click="props.toggleCancle(false)" flat type="danger">
+                    Отмена
+                </BaseButton>
+                <BaseButton :btn="false" flat type="success">
+                    Подтвердить
+                </BaseButton>
+            </div>
+        </form>
+</template>
+
+<style scoped>
+
+</style>
