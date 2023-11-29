@@ -19,7 +19,7 @@ defineProps<IHeaderProps>()
             </div>
             <div class="flex gap-5 items-center">
                 <NamedAvatar color="primary" full-name="Shuhrat Safoev" />
-                <BaseHeading color="secondary">
+                <BaseHeading extra-class="lg:block hidden" color="secondary">
                     shukhrat.safoev@mail.ru 
                 </BaseHeading> 
                 <BaseButton flat>

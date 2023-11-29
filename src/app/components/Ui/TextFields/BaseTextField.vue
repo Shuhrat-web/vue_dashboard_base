@@ -33,9 +33,9 @@
             sm: 'text-sm sm:text-xs',
         },
         size: {
-            md: 'py-1.5 px-1 ',
-            lg: 'py-3 px-1',
-            sm: 'py-0.5 px-1',
+            md: 'py-1.5 px-1 placeholder:text-md',
+            lg: 'py-3 px-1 placeholder:text-lg',
+            sm: 'py-0.5 px-1 placeholder:text-sm',
         }
     }
 </script>
@@ -54,6 +54,7 @@
         class="block text-sm font-medium leading-6 text-gray-900">{{ props.label }}</label>
         <div class="mt-2">
             <input
+            :placeholder="props.placeHolder"
             :required="props.required"
             :value="modelValue"
             @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"

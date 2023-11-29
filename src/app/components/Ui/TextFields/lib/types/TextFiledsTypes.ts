@@ -9,6 +9,7 @@ export interface IBaseTextFieldProps {
     type?: string; 
     round?: string;
     size?: string;
+    placeHolder?: string;
 }
 
 export interface ITextFieldSettings {

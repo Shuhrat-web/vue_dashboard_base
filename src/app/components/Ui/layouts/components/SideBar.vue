@@ -11,10 +11,10 @@ defineProps<ISidebarProps>()
 <template>
     <aside 
     :class="{
-        ['left-0 w-[15%]']: showAside,
-        ['-left-full w-[15%]']: !showAside,        
+        ['left-0 w-[40%] lg:w-[15%] visible opacity-100']: showAside,
+        ['-left-full w-[15%] opacity-0 invisible']: !showAside,        
     }"
-    class="h-full fixed  bg-white shadow-sm border-r border-secondary duration-200 transition-all">
+    class="h-full fixed  bg-white shadow-sm border-r border-secondary duration-500 transition-all ease-out z-30">
         <div class="flex flex-col justify-center items-center p-2 mb-5">
             <Logo :height="50" :width="50"/> 
             <BaseHeading extra-class="mt-5">
