@@ -71,7 +71,7 @@ export const usersStore = defineStore('users', () => {
     const deleteUser = (id: number) => {
         allUsers.value = allUsers.value.filter(el => el.id !== id)
         synUsersWithocalStorage()
-        toast.error('User deleted successfully!', {
+        toast.warning('User deleted successfully!', {
             timeout: 2000
         })
     }

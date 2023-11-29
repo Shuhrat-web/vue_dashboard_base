@@ -52,12 +52,6 @@ export const users:IUser[] = [
                 price: 10,
                 description: 'lorem ipsum dolor sit amet'
             },
-            {
-                id: 2,
-                name: 'Example service 2',
-                price: 10,
-                description: 'lorem ipsum dolor sit amet 2'
-            },
         ]
     },
 ]

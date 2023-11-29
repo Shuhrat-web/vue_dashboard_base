@@ -4,12 +4,14 @@ import { ref, computed } from "vue";
 import { ITarif } from "@/app/lib/requests/types/TarifsTypes";
 import { IDialogActions } from "../lib/types/StoreTypes";
 import { useToast } from "vue-toastification";
+import { usersStore } from "../users/usersStore";
 
 export const tarifsStore = defineStore('tarifs', () => {
     /*
         hooks
     */
     const toast = useToast();
+    const users = usersStore()
 
     /*
         /hooks
@@ -63,9 +65,12 @@ export const tarifsStore = defineStore('tarifs', () => {
     }
 
     const deleteTarif = (id: number) => {
+        if(users.getallUsers.find(el => el.tarif?.id ==id)) return toast.error('Tarif has a user and cant be deleted', {
+            timeout: 2000
+        })
         allTarifs.value = allTarifs.value.filter(el => el.id !== id)
         synTarifsWithocalStorage()
-        toast.error('Tarif deleted successfully!', {
+        toast.warning('Tarif deleted successfully!', {
             timeout: 2000
         })
     }

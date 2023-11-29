@@ -4,12 +4,15 @@ import { ref, computed } from "vue";;
 import { IDialogActions } from "../lib/types/StoreTypes";
 import { useToast } from "vue-toastification";
 import { IService } from "@/app/lib/requests/types/ServicesTypes";
+import { usersStore } from "../users/usersStore";
+
 
 export const servicesStore = defineStore('services', () => {
     /*
         hooks
     */
     const toast = useToast();
+    const users = usersStore()
 
     /*
         /hooks
@@ -63,9 +66,18 @@ export const servicesStore = defineStore('services', () => {
     }
 
     const deleteService = (id: number) => {
+        let serviceIsBeingUsing:boolean = false
+        users.getallUsers.map(user => {
+            user.services?.map(service => {
+                if(service.id === id) serviceIsBeingUsing = true
+            })
+        })
+        if(serviceIsBeingUsing) return toast.error('Service has a user and cant be deleted', {
+            timeout: 2000
+        })
         allServices.value = allServices.value.filter(el => el.id !== id)
         synServicesWithocalStorage()
-        toast.error('Service deleted succesessfully!', {
+        toast.warning('Service deleted succesessfully!', {
             timeout: 2000
         })
     }
