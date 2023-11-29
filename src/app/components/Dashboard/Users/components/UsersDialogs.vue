@@ -2,34 +2,34 @@
 <script setup lang="ts">
     import BaseHeading from '@components/Ui/Headings/BaseHeading.vue'
     import BaseDialog from '@components/Ui/Dialog/BaseDialog.vue'
-    import BaseButton from '@components/Ui/Buttons/BaseButton.vue';
-    import ServicesForm from './forms/ServicesForm.vue'
-    import { servicesStore } from '@store/services/servicesStore';
-    import { IService } from '@/app/lib/requests/types/ServicesTypes';
+    import BaseButton from '@/app/components/Ui/Buttons/BaseButton.vue';
+    import UserForm from './forms/UserForm.vue';
+    import { usersStore } from '@/app/store/users/usersStore';
+    import { IUser } from '@/app/lib/requests/types/UsersTypes';
 
-    const services = servicesStore() 
+    const users = usersStore() 
 
     const toggleDeleteAction = (show:boolean) => {
-        services.setDialogAction('delete',show)
+        users.setDialogAction('delete',show)
     }
 
     const toggleEditAction = (show:boolean) => {
-        services.setDialogAction('edit',show)
+        users.setDialogAction('edit',show)
     }
     const toggleCreateAction = (show:boolean) => {
-        services.setDialogAction('create',show)
+        users.setDialogAction('create',show)
     }
     const confirmDelete = () => {
-        if(services.activeItem)services.deleteService(services.activeItem.id)
+        if(users.activeItem)users.deleteUser(users.activeItem.id)
         toggleDeleteAction(false)
     }
-    const confirmEdit = (item:IService) => {
+    const confirmEdit = (item:IUser) => {
         toggleEditAction(false)
-        services.editService(item)
+        users.editUser(item)
     }
 
-    const confirmCreate = (item:IService) => {
-        services.createService(item)
+    const confirmCreate = (item:IUser) => {
+        users.createUser(item)
         toggleCreateAction(false)
     }
 </script>
@@ -39,14 +39,14 @@
         <BaseDialog 
         size="sm"
         :toggle-show="toggleDeleteAction"
-        :show="services.dialogActions.delete">
+        :show="users.dialogActions.delete">
             <template v-slot:header>
                 <BaseHeading centered size="2xl">
                     Confirm the action
                 </BaseHeading>
             </template>
             <p class="text-center">
-                Are you sure, that you want to delete  "{{ services.activeItem.name }}"?
+                Are you sure, that you want to delete  "{{ users.activeItem.firstName }}"?
             </p>
             <template v-slot:footer>
                 <div class="flex justify-center items-center gap-5">
@@ -61,28 +61,28 @@
         </BaseDialog>
         <BaseDialog
         :toggle-show="toggleEditAction"
-        :show="services.dialogActions.edit">
+        :show="users.dialogActions.edit">
             <template v-slot:header>
                 <BaseHeading centered size="2xl">
-                    Editing "{{ services.activeItem.name }}"
+                    Editing "{{ users.activeItem.firstName }}"
                 </BaseHeading>
             </template>
-            <ServicesForm
-                :active-item="services.activeItem"
+            <UserForm
+                :active-item="users.activeItem"
                 :con-firm-form="confirmEdit"
                 :toggle-cancle="toggleEditAction"
              />
         </BaseDialog>
         <BaseDialog
         :toggle-show="toggleCreateAction"
-        :show="services.dialogActions.create">
+        :show="users.dialogActions.create">
             <template v-slot:header>
                 <BaseHeading centered size="2xl">
                     Creating
                 </BaseHeading>
             </template>
-            <ServicesForm
-                :active-item="services.activeItem"
+            <UserForm
+                :active-item="users.activeItem"
                 :con-firm-form="confirmCreate"
                 :toggle-cancle="toggleCreateAction"
              />

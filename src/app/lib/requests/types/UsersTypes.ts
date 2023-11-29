@@ -6,7 +6,7 @@ export interface IUser {
     firstName: string;
     lastName: string;
     fathersName: string;
-    tarif: ITarif;
+    tarif?: ITarif | null;
     msisdn: number;
-    services: IService[];
+    services?: IService[] | null;
 }

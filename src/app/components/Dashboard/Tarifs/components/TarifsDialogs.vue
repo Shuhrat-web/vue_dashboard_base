@@ -42,11 +42,11 @@
         :show="tarifs.dialogActions.delete">
             <template v-slot:header>
                 <BaseHeading centered size="2xl">
-                    Подтвердите действие
+                    Confirm the action
                 </BaseHeading>
             </template>
             <p class="text-center">
-                Вы уверены что хотите удалить "{{ tarifs.activeItem.name }}"?
+                Are you sure, that you want to delete  "{{ tarifs.activeItem.name }}"?
             </p>
             <template v-slot:footer>
                 <div class="flex justify-center items-center gap-5">
@@ -64,7 +64,7 @@
         :show="tarifs.dialogActions.edit">
             <template v-slot:header>
                 <BaseHeading centered size="2xl">
-                    Редактирование "{{ tarifs.activeItem.name }}"
+                    Editing "{{ tarifs.activeItem.name }}"
                 </BaseHeading>
             </template>
             <TarifForm
@@ -78,7 +78,7 @@
         :show="tarifs.dialogActions.create">
             <template v-slot:header>
                 <BaseHeading centered size="2xl">
-                    Создание
+                    Creating
                 </BaseHeading>
             </template>
             <TarifForm

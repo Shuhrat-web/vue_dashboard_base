@@ -19,7 +19,7 @@ export const tarifsStore = defineStore('tarifs', () => {
     */
     const defineTarifsJSON = localStorage.getItem('tarifs');
     const defineTarifs: ITarif[] | [] = defineTarifsJSON ? JSON.parse(defineTarifsJSON) : [];
-    let allTarifs = ref<ITarif[] | []>(defineTarifs.length !== 0 ? defineTarifs : tarifs)
+    let allTarifs = ref<ITarif[] | []>(defineTarifsJSON ? defineTarifs : tarifs)
     const emptyItem:ITarif = {
         id: Date.now(),
         name: '',

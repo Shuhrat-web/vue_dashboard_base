@@ -19,7 +19,7 @@ export const servicesStore = defineStore('services', () => {
     */
     const defineServicesJSON = localStorage.getItem('services');
     const defineServices: IService[] | [] = defineServicesJSON ? JSON.parse(defineServicesJSON) : [];
-    let allServices = ref<IService[] | []>(defineServices.length !== 0 ? defineServices : services)
+    let allServices = ref<IService[] | []>(defineServicesJSON ? defineServices : services)
     const emptyItem:IService = {
         id: Date.now(),
         name: '',
@@ -85,6 +85,7 @@ export const servicesStore = defineStore('services', () => {
         toast.success('Service created successfully!', {
             timeout: 2000
         })
+        activeItem.value = emptyItem
     }
 
     const synServicesWithocalStorage = () => {
