@@ -6,12 +6,12 @@ import Toast,{ PluginOptions } from "vue-toastification";
 // Import the CSS or use your own!
 import "vue-toastification/dist/index.css";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import { FaHome,HiUserGroup,HiBookOpen,HiCalendar  } from "oh-vue-icons/icons";
+import { FaHome,HiUserGroup,HiBookOpen,HiCalendar,HiMenu,HiMenuAlt3   } from "oh-vue-icons/icons";
 import { createPinia } from 'pinia';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 
-addIcons(FaHome,HiUserGroup,HiBookOpen,HiCalendar );
+addIcons(FaHome,HiUserGroup,HiBookOpen,HiCalendar,HiMenu,HiMenuAlt3  );
 
 
 const app = createApp(App)
